@@ -1,0 +1,10 @@
+
+import numpy as np
+
+def calculate_population_variance(data):
+    return np.var(data)
+
+data = np.array([10, 20, 30, 40, 50])
+
+result = calculate_population_variance(data)
+print("Population variance:", result)  # 200.0

@@ -1,18 +1,18 @@
+import numpy as np
 
-from scipy.stats import norm
+def Gaussian_PDF(data):
+    result = []
 
-def calculate_gaussian_pdf(x, mean, sd):
-    if sd <= 0:
-        raise ValueError("sd must be positive")
+    mean = np.mean(data)
+    sd = np.std(data)
 
-    return norm.pdf(x, loc=mean, scale=sd)
+    for x in data:
+        ans = (1 / (sd * np.sqrt(2 * np.pi))) * np.exp(
+            -0.5 * ((x - mean) / sd) ** 2
+        )
+        result.append(ans)
 
-x = 60
-mean = 50
-sd = 10
-
-result = calculate_gaussian_pdf(x, mean, sd)
-print("PDF value:", result)
+    return np.array(result)
 
 
 import math

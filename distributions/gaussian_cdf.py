@@ -1,15 +1,16 @@
+import math
+import numpy as np
 
-from scipy.stats import norm
+def Gaussian_CDF(data):
+    result = []
 
-def calculate_gaussian_cdf(x, mean, sd):
-    if sd <= 0:
-        raise ValueError("sd must be positive")
+    mean = np.mean(data)
+    sd = np.std(data)
 
-    return norm.cdf(x, loc=mean, scale=sd)
+    for x in data:
+        ans = 0.5 * (
+            1 + math.erf((x - mean) / (np.sqrt(2) * sd))
+        )
+        result.append(ans)
 
-x = 60
-mean = 50
-sd = 10
-
-result = calculate_gaussian_cdf(x, mean, sd)
-print("P(X <= 60):", result)  # Approximately 0.8413
+    return np.array(result)
